@@ -25,3 +25,14 @@ jobs:
       run: python -m pytest
     - name: Check Linting with ruff
       run: ruff check .
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build and push
+      uses: docker/build-push-action@v6
+      with:
+        push: true
+        tags: ghcr.io/rmbertolino/cicd-python:latest
