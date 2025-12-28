@@ -12,3 +12,16 @@ python -m pytest
 ruff check .
 
 CD: Despliegue Continuo (Desplegar en forma automática)
+* Package
+* deploy automático al VPS
+* fake-vps
+  * docker --version
+  * docker run -d \
+  --name fake-vps \
+  --hostname fake-vps \
+  -p 2222:22 \
+  --restart unless-stopped \
+  ubuntu:22.04 \
+  sleep infinity
+  * entrar al vps-fake
+    * docker exec -it fake-vps bash
